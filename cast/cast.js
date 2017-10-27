@@ -4,13 +4,14 @@ var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
 var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:de.ytvwld.pixelcast');
 messageBus.onMessage = function(event) {
-  if(event.data["command"] == "draw") {
+  data = JSON.parse(event.data);
+  if(data["command"] == "draw") {
     draw(
-      event.data["x"],
-      event.data["y"],
-      event.data["r"],
-      event.data["g"],
-      event.data["b"]
+      data["x"],
+      data["y"],
+      data["r"],
+      data["g"],
+      data["b"]
     );
   }
 }
